@@ -1,0 +1,76 @@
+import { useState } from "react";
+
+function App() {
+  const [formData, setFormData] = useState({
+    imie: "",
+    nazwisko: "",
+    ulica: "",
+    miasto: ""
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(`Wysłano dane:
+    Imię: ${formData.imie}
+    Nazwisko: ${formData.nazwisko}
+    Ulica: ${formData.ulica}
+    Miasto: ${formData.miasto}`);
+  };
+
+  return (
+    <div style={{ padding: "20px", maxWidth: "400px", margin: "0 auto" }}>
+      <h2>Formularz danych</h2>
+
+      <form onSubmit={handleSubmit}>
+        <label>Imię:</label>
+        <input
+          type="text"
+          name="imie"
+          value={formData.imie}
+          onChange={handleChange}
+          required
+        />
+
+        <label>Nazwisko:</label>
+        <input
+          type="text"
+          name="nazwisko"
+          value={formData.nazwisko}
+          onChange={handleChange}
+          required
+        />
+
+        <label>Ulica:</label>
+        <input
+          type="text"
+          name="ulica"
+          value={formData.ulica}
+          onChange={handleChange}
+          required
+        />
+
+        <label>Miasto:</label>
+        <input
+          type="text"
+          name="miasto"
+          value={formData.miasto}
+          onChange={handleChange}
+          required
+        />
+
+        <button type="submit" style={{ marginTop: "10px" }}>
+          Wyślij
+        </button>
+      </form>
+    </div>
+  );
+}
+
+export default App;
